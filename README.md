@@ -1,2 +1,2 @@
 # helloworld
-初めてのGitHub。
+* 初めてのGitHub。
