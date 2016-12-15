@@ -18,7 +18,6 @@ public class ShowText{
 
 
 			}
-
 		}
 	}
 }
