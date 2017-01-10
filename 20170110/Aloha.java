@@ -1,7 +1,7 @@
 public class Aloha{
 	public static void main(String[] args) {
-		Alohaman am = new Alohaman();
-		am.sayAloha(999999,999998);
+		Alohaman am = new Alohaman(args[0],args[1]);
+		am.sayAloha(Integer.parseInt(args[2]),Integer.parseInt(args[3]));
 	}
 }
 class Alohaman{
@@ -12,6 +12,11 @@ class Alohaman{
 	public Alohaman(){
 		this.msg = "ALOHA!";
 		this.msg2 = "アロハ！";
+
+	}
+	public Alohaman(String m1, String m2){
+		this.msg = m1;
+		this.msg2 = m2;
 
 	}
 	public void sayAloha(){
