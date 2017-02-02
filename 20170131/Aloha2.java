@@ -38,50 +38,7 @@ public void saveData(String[] strData){
 		public void actionPerformed(ActionEvent ae){
 		String cmd = ae.getActionCommand();
 
-		if(cmd.equals("open")){
-			textArea.append("開く"+'\n');
-			FileReader fr;
-			BufferedReader br;
-			String textFileName = "Directory";
-			try {
-				JFileChooser  fc = new JFileChooser();
-				fc.setCurrentDirectory(new File("."));
-
-				int ret = fc.showOpenDialog(frame);
-
-				if(ret==JFileChooser.APPROVE_OPTION){
-					File file = fc.getSelectedFile();
-					textFileName = file.getAbsolutePath();
-					fileName.setText(textFileName);
-				}
-				fr = new FileReader(textFileName);
-				br = new BufferedReader(fr);
-
-				String data;
-				while((data = br.readLine()) != null){
-					textArea.append(data+'\n');
-
-				}
-				
-			} catch(IOException e) {
-					System.out.println("IO error.");
-			}
-		} else if(cmd.equals("save")) {
-			FileWriter fw = null;
-			PrintWriter pw = null;
-			String textFileName = "save";
-
-			try {
-				JFileChooser  fc = new JFileChooser();
-				fc.setCurrentDirectory(new File("."));
-
-				int ret = fc.showSaveDialog(frame);
-
-				if(ret==JFileChooser.APPROVE_OPTION){
-					File file = fc.getSelectedFile();
-					textFileName = file.getAbsolutePath();
-					fileName.setText(textFileName);
-				}
+		
 				fw = new FileWriter(textFileName);
 				pw = new PrintWriter(fw);
 
@@ -96,8 +53,7 @@ public void saveData(String[] strData){
 				} catch(IOException e){
 					System.out.println("IO error.");
 				}
-			}
-		}
+		
 	}
 }
 
