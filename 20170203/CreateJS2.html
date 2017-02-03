@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="css/base.css">
+  <script src="https://code.createjs.com/createjs-2015.11.26.min.js"></script>
+  <script>
+    window.addEventListener("load", init);
+    function init() {
+      var stage = new createjs.Stage("myCanvas");
+      var poly = new createjs.Shape();
+      stage.addChild(poly); 
+      poly.x = 200;
+      poly.y = 100;
+     
+      var miniStar = new createjs.Shape();
+      miniStar.graphics.beginFill("blue").drawPolyStar(0, 0, 10, 5, 0.6, -90);
+      miniStar.y = 100;
+      stage.addChild(miniStar); 
+      var vx = +10;
+      
+      createjs.Ticker.addEventListener("tick", handleTick);
+      function handleTick() {
+       
+        miniStar.x += vx;
+        if (miniStar.x > 400) {
+          vx = -10;
+          miniStar.x = 400;
+        } else if (miniStar.x < 0) {
+          vx = +10;
+          miniStar.x = 0;
+        }
+       
+        var point = miniStar.localToLocal(0, 0, poly);
+       
+        var isHit = poly.hitTest(point.x, point.y);
+        
+        if (isHit == true) {
+         
+          poly.graphics.clear()
+                  .beginFill("DarkRed")
+                  .drawPolyStar(0, 0, 75, 10, 0.6, -90);
+        } else {
+         
+          poly.graphics.clear()
+                  .beginFill("green")
+                  .drawPolyStar(0, 0, 75, 10, 0.6, -90);
+        }
+       
+        stage.update();
+      }
+    }
+  </script>
+</head>
+<body>
+  <canvas id="myCanvas" width="1800" height="900"></canvas>
+</body>
+</html>

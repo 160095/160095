@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>createjs: keyboard</title>
+</head>
+<body>
+	<h1>createjs: keyboard</h1>
+	<hr>
+
+	<canvas id="myCanvas" width="1800" height="900"></canvas>
+
+	<script src="https://code.createjs.com/createjs-2015.11.26.min.js"></script>
+	<script>
+		window.addEventListener('load', init);
+
+		function init() {
+		
+			var stage = new createjs.Stage('myCanvas');
+
+			var shape = new createjs.Shape();
+			shape.graphics.beginFill("#f00");
+			shape.graphics.drawPolyStar(100,100,50,5,0.6,-90);
+
+
+			
+
+			stage.addChild(shape);
+
+			window.addEventListener('keydown',handleKeyDown);
+
+
+
+			stage.update();
+
+			var muki = 0;
+			var muki2 = 0;
+			function handleKeyDown(event){
+				
+				var keycode = event.keyCode ;
+
+				if(keycode == 37){muki = -1; muki2 = 0;}
+				if(keycode == 39){muki = +1;muki2 = 0;}
+				if(keycode == 38){muki2 = -1;muki = 0;}
+				if(keycode == 40){muki2 = +1;muki = 0;}
+				if(keycode == 27){muki = 0;muki2 = 0;alert("STOPPED");}
+	
+			}
+
+			createjs.Ticker.on('tick',function(){
+
+				shape.x += 5 * muki;
+				shape.y += 5 * muki2;
+				stage.update();
+
+
+				
+				
+
+			});
+
+				
+		}
+	</script>
+
+</body>
+</html>
